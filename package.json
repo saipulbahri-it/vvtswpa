@@ -1,0 +1,40 @@
+{
+  "name": "pilgub",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@tabler/icons-vue": "^3.5.0",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-vue-3": "^0.5.1",
+    "lru-cache": "^10.2.2",
+    "rxjs": "^7.8.1",
+    "vue": "^3.4.26",
+    "vue-gtag-next": "^1.14.0",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@vite-pwa/assets-generator": "^0.2.4",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "~1.64.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.10",
+    "vite-plugin-pwa": "^0.20.0",
+    "vue-tsc": "^2.0.6",
+    "workbox-core": "^7.1.0",
+    "workbox-precaching": "^7.1.0",
+    "workbox-routing": "^7.1.0",
+    "workbox-strategies": "^7.1.0",
+    "workbox-window": "^7.1.0"
+  },
+  "overrides": {
+    "sharp": "0.32.6",
+    "sharp-ico": "0.1.5"
+  }
+}

@@ -6,7 +6,7 @@
                     aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                <h1 class="navbar-brand navbar-brand-autodark- d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href=".">
                         <img src="/vite.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image" />
                     </a>
@@ -15,12 +15,12 @@
                     <div class="d-none d-md-flex">
                         <a href="#" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" aria-label="Enable dark mode"
-                            data-bs-original-title="Enable dark mode">
+                            data-bs-original-title="Enable dark mode" @click="setColorMode('dark')">
                             <IconMoon size="24" />
                         </a>
                         <a href="#" class="nav-link px-0 hide-theme-light" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" aria-label="Enable light mode"
-                            data-bs-original-title="Enable light mode">
+                            data-bs-original-title="Enable light mode" @click="setColorMode('light')">
                             <IconSun />
                         </a>
                         <div class="nav-item dropdown d-none d-md-flex me-3">
@@ -153,18 +153,16 @@
                     </div>
                     <BNavItemDropdown toggleClass="d-flex lh-1 text-reset p-0" right dropdownLink noCaret>
                         <template #toggle-content>
-                            <!-- <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
-                aria-label="Open user menu"> -->
-                            <BAvatar size="sm" image="https://preview.tabler.io/static/avatars/000m.jpg" />
+                            <BAvatar size="sm" image="/vite.svg" />
                             <div class="d-none d-xl-block ps-2">
                                 <div>Dunn Slane</div>
                                 <div class="mt-1 small text-secondary">Research Nurse</div>
                             </div>
                         </template>
                         <a href="#" class="dropdown-item">Status</a>
-                        <a href="./profile.html" class="dropdown-item">Profile</a>
+                        <a href="/profile" class="dropdown-item">Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                        <a href="/sign-in.html" class="dropdown-item">Logout</a>
                     </BNavItemDropdown>
                 </div>
                 <slot name="nabar-menu"></slot>
@@ -175,4 +173,13 @@
 <script lang="ts" setup>
 import { BAvatar, BNavItemDropdown } from '../../@core/components'
 import { IconBell, IconMoon, IconSun } from "@tabler/icons-vue";
+
+const setTheme = (el: HTMLElement, value: string): void => el.setAttribute('data-bs-theme', value);
+
+const setColorMode = (value: any) => {
+    const body = document.body;
+    window.localStorage.setItem('mode', value)
+    setTheme(body, value);
+};
+
 </script>

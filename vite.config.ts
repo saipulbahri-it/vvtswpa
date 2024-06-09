@@ -56,23 +56,9 @@ export default defineConfig({
       },
     }),
   ],
+  esbuild: { legalComments: 'none' },
   server: {
     proxy: {
-      // string shorthand: http://localhost:5173/foo -> http://localhost:4567/foo
-      // "/api/tps": "https://kawalpemilu.org/assets/tps2.json",
-      // // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
-      // '/api': {
-      //   target: 'http://jsonplaceholder.typicode.com',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/api/, ''),
-      // },
-      // // with RegEx: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
-      // '^/fallback/.*': {
-      //   target: 'http://jsonplaceholder.typicode.com',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/fallback/, ''),
-      // },
-      // // Using the proxy instance
       "/api": {
         target: "https://kawalpemilu.org",
         changeOrigin: true,

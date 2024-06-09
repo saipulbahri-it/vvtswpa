@@ -177,6 +177,7 @@ useEventListener(parent, 'hide.bs.dropdown', () => emit('hide'))
 useEventListener(parent, 'hidden.bs.dropdown', () => emit('hidden'))
 
 onMounted((): void => {
+  // return;
   instance.value = new Dropdown(dropdown.value?.$el, {
     autoClose: props.autoClose,
     boundary: props.boundary,

@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import axios from "axios";
-import { Hierarchy, PrestineLokasi } from "./interfaces.ts";
+import { Hierarchy, PrestineLokasi } from "../lib/interfaces.ts";
 
 const a = ref<string>('null');
 

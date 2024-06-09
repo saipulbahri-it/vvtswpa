@@ -35,7 +35,7 @@ export class PrestineLokasi {
    * @param {Record<string, string>} id2name The map of idLokasi to name.
    * @return {Record<string, string[]>} The map of sorted children.
    */
-  private getChildrenIds(id2name: Record<string, string>) {
+  private getChildrenIds(id2name: Record<string, string>): Record<string, string[]> {
     const c: Record<string, Set<string>> = { "": new Set<string>() };
     for (const idDesa of Object.keys(id2name)) {
       if (idDesa.length != 10) continue;
@@ -121,5 +121,15 @@ export class PrestineLokasi {
     };
     rec("");
     return totalDpt;
+  }
+
+  /**
+   * Gets the name of the wilayah based on the provided id.
+   * @param {Record<string, string>} id2name The map of idLokasi to name.
+   * @param {string} id The idLokasi to look up.
+   * @return {string | undefined} The name of the wilayah, or undefined if not found.
+   */
+  getNameById(id: string): string | undefined {
+    return this.H.id2name[id];
   }
 }

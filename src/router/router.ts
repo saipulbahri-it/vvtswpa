@@ -1,7 +1,7 @@
 const Home = () => import("../pages/Home.vue");
 const NotFound = () => import("../pages/NotFound.vue");
 
-const WilayahTps = () => import("../pages/WilayahTps.vue");
+const Votes = () => import("../pages/Votes.vue");
 
 export default [
   {
@@ -11,9 +11,10 @@ export default [
     meta: { title: "Filter Frameworks", pretitle: "Test Rxjs" },
   },
   {
-    path: "/wilayah",
-    component: WilayahTps,
-    name: "wilayah",
+    path: "/v/:kode(\\d+)?",
+    component: Votes,
+    name: "votes",
+    // meta: { title: "Kab/Kota", pretitle: "Votes" },
   },
   {
     path: "/:pathMatch(.*)*",

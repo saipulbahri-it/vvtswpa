@@ -1,13 +1,26 @@
 <template>
-    <div v-for="(framework, index) in frameworks" :key="index">
-        {{ framework }}
-    </div>
+    <b-page>
+        <template #header-action>
+            <div class="btn-group-">
+                <div class="btn-">
+                    <IconSettings size="24" />
+                    default hire
+                </div>
+            </div>
+        </template>
+        <div v-for="(framework, index) in frameworks" :key="index">
+            {{ framework }}
+        </div>
+    </b-page>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { interval } from "rxjs";
 import { map, filter, takeWhile } from "rxjs/operators";
+import { IconSettings } from "@tabler/icons-vue";
+
+// defineProps<{ title?: string | undefined, pretitle?: string | null }>()
 
 const frameworks = ref<string[]>([]);
 const time = 1000;

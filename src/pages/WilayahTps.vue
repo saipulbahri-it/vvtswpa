@@ -1,26 +1,24 @@
 <template>
-    <Suspense>
-        <template #default>
-            <div v-for="(item, index) in lokasi" :key="index">{{ item }}</div>
-        </template>
-        <template #fallback>
-            <span>Loading...</span>
-        </template>
-    </Suspense>
+    <b-page :title="'Lokasi TPS'" pretitle="Pre Lokasi TPS">
+        <div v-for="(item, index) in lokasi" :key="index">{{ item }}</div>
+    </b-page>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-// import axios from "axios";
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Hierarchy, PrestineLokasi } from "./interfaces.ts";
-import { LRUCache } from 'lru-cache'
+import { Hierarchy, PrestineLokasi } from "../lib/interfaces";
+
+defineProps<{ title?: string | undefined, pretitle?: string | null }>()
+
+
+// import { LRUCache } from 'lru-cache'
 // Set up LRU cache
-const cache = new LRUCache<string, Hierarchy>({
-    max: 100, // Maximum number of items
-    // maxAge: 15 * 60 * 1000 // Cache expiration time in milliseconds
-});
+// const cache = new LRUCache<string, Hierarchy>({
+//     max: 100, // Maximum number of items
+//     maxAge: 15 * 60 * 1000 // Cache expiration time in milliseconds
+// });
 
 const lokasi = ref<string[]>([]);
 
@@ -35,19 +33,19 @@ const fetchData = () => {
     const url = "/tps.json";
 
     // Check if the response is in the cache
-    const cachedResponse = cache.get(url);
+    // const cachedResponse = cache.get(url);
+
+    // // if (cachedResponse) {
+    // //     // Return cached response as an observable
+    // //     return from(Promise.resolve(new PrestineLokasi(cachedResponse)));
+    // // }
 
     // if (cachedResponse) {
     //     // Return cached response as an observable
-    //     return from(Promise.resolve(new PrestineLokasi(cachedResponse)));
+    //     return from(Promise.resolve(cachedResponse)).pipe(
+    //         map(data => new PrestineLokasi(data))
+    //     );
     // }
-
-    if (cachedResponse) {
-        // Return cached response as an observable
-        return from(Promise.resolve(cachedResponse)).pipe(
-            map(data => new PrestineLokasi(data))
-        );
-    }
 
     // Fetch the data if not cached
     return from(fetch(url)
@@ -59,7 +57,7 @@ const fetchData = () => {
         })
         .then((data: Hierarchy) => {
             // Cache the fetched data
-            cache.set(url, data);
+            // cache.set(url, data);
             return data;
         })
     ).pipe(

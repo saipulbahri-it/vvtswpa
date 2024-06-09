@@ -6,12 +6,15 @@
 //   export default component;
 // }
 
-declare module '*.vue' {
-  import Vue from 'vue'
-  export default Vue
+declare module "*.vue" {
+  import Vue from "vue";
+  export default Vue;
 }
 
-declare module "bootstrap";
+declare module "bootstrap" {
+  import { Dropdown } from "bootstrap/js/src/dropdown";
+  export { Dropdown };
+}
 
 // declare module "bootstrap-vue-3";
 // import { BNavItemDropdown } from "bootstrap-vue-3/src/components/";

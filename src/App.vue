@@ -18,6 +18,13 @@ const setTheme = (el: HTMLElement, value: string): void => el.setAttribute('data
 
 setTheme(document.body, window.localStorage.getItem('mode') || 'light');
 
+const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+
+if (darkThemeMq.matches) {
+  // setTheme(document.body, window.localStorage.getItem('mode') || 'light');
+} else {
+  // Theme set to light.
+}
 </script>
 
 <template>

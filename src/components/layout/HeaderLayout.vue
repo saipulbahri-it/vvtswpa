@@ -12,7 +12,7 @@
                     </a>
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
-                    <div class="d-none d-md-flex">
+                    <div class="d-none-d-md-flex gap-1">
                         <a href="#" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" aria-label="Enable dark mode"
                             data-bs-original-title="Enable dark mode" @click="setColorMode('dark')">

@@ -17,7 +17,7 @@
                             </nav>
                         </div>
                         <!-- Page title actions -->
-                        <div class="col-12 col-md-auto ms-auto d-print-none mt-3 mt-md-0">
+                        <div class="col-12 col-md-auto ms-auto d-print-none mt-3 mt-md-0 d-none">
                             <div class="input-icon">
                                 <input type="text" value="" class="form-control form-control-rounded"
                                     placeholder="Search…">
@@ -37,8 +37,8 @@
                 </div>
             </div>
         </template>
-        <div class="card">
-            <table class="table card-table table-vcenter table-sm- table-borderless table-striped">
+        <div class="card responsive-sm">
+            <table class="table table-votes card-table table-vcenter table-sm table-bordered table-striped w-full">
                 <thead class="sticky-top bg-blue-lt">
                     <tr>
                         <th>
@@ -63,17 +63,17 @@
                             </div>
                         </th>
                         <th class="vertical-align-middle text-center">
-                            <h3 class="mb-0">Cakupan TPS</h3>
+                            <h3 class="mb-0">TPS</h3>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(item, index) in lokasi" :key="index">
-                        <td>
-                            <router-link :to="`/v/${item}`" v-if="item.length <= 6">
+                        <td class="lokasi fs-4 fw-semibold">
+                            <router-link :to="`/v/${item}`" v-if="item.length <= 6" class="label">
                                 {{ IDToName[item] }}
                             </router-link>
-                            <div v-else> {{ IDToName[item] }} </div>
+                            <div v-else class="label"> {{ IDToName[item] }} </div>
                         </td>
                         <td class="text-center vote">
                             <div class="d-flex gap-2 flex-column">
@@ -258,19 +258,28 @@ th.vote,
 td.vote {
     line-height: 0.7;
     font-size: small;
-    max-width: 3rem;
+    min-width: 3rem;
 }
 
-td .persen {
-    font-weight: 700;
+table .persen {
+    font-weight: 500;
+    text-wrap: nowrap;
 }
 
-td .number {
+table .number {
+    font-size: smaller;
+    text-wrap: nowrap;
+    color: rgba(240, 248, 255, 0.502);
+}
+
+table .progres {
     font-size: smaller;
 }
-
-td .progress {
-    font-size: smaller;
-    height: auto;
+.table-votes {
+    font-size: 0.7rem;
+    font-family: monospace;
+}
+.table-votes .lokasi {
+    font-family: monospace;
 }
 </style>

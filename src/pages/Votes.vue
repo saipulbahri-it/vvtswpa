@@ -37,8 +37,8 @@
                 </div>
             </div>
         </template>
-        <div class="card responsive-sm">
-            <table class="table table-votes card-table table-vcenter table-sm table-bordered table-striped w-full">
+        <div class="card d-none d-md-block">
+            <table class="table table-votes card-table table-vcenter table-sm table-borderless table-striped w-full">
                 <thead class="sticky-top bg-blue-lt">
                     <tr>
                         <th>
@@ -101,31 +101,108 @@
                         </td>
                     </tr>
                 </tbody>
+            </table>
+        </div>
+        <div class="card d-md-none">
+            <table class="table table-votes card-table table-vcenter table-sm table-borderless table-striped w-full">
+                <thead class="sticky-top bg-blue-lt">
+                    <tr>
+                        <th colspan="4">
+                            <h3 class="mb-0">{{ tLabel }}</h3>
+                            <div class="d-flex justify-content-around">
+                                <div class="vertical-align-middle text-center vote">
+                                    <div class="d-flex gap-1 justify-content-center">
+                                        <!-- <b-avatar image="/vite.svg" size="sm" /> -->
+                                        <h3 class="mb-0">01</h3>
+                                    </div>
+                                </div>
+                                <div class="vertical-align-middle text-center vote">
+                                    <div class="d-flex gap-1 justify-content-center">
+                                        <!-- <b-avatar image="/vite.svg" size="sm" /> -->
+                                        <h3 class="mb-0">02</h3>
+                                    </div>
+                                </div>
+                                <div class="vertical-align-middle text-center vote">
+                                    <div class="d-flex gap-1 justify-content-center">
+                                        <!-- <b-avatar image="/vite.svg" size="sm" /> -->
+                                        <h3 class="mb-0">03</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="vertical-align-middle text-center">
+                            <h3 class="mb-0">TPS</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in lokasi" :key="index">
+                        <td colspan="4" class="ps-1">
+                            <div class="lokasi fs-4 fw-semibold bg-light-lt ps-2">
+                                <router-link :to="`/v/${item}`" v-if="item.length <= 6" class="label">
+                                    {{ IDToName[item] }}
+                                </router-link>
+                                <div v-else class="label"> {{ IDToName[item] }} </div>
+                            </div>
+                            <div class="d-flex justify-content-around">
+                                <div class="col text-center vote bg-green-lt">
+                                    <div class="d-flex flex-column">
+                                        <span class="persen"> 80.75% </span>
+                                        <span class="number text-dark-lt"> {{ item }} </span>
+                                    </div>
+                                </div>
+                                <div class="col text-center vote bg-warning-lt">
+                                    <div class="d-flex flex-column">
+                                        <span class="persen"> 80.75% </span>
+                                        <span class="number text-dark-lt"> {{ item }} </span>
+                                    </div>
+                                </div>
+                                <div class="col text-center vote bg-blue-lt">
+                                    <div class="d-flex flex-column">
+                                        <span class="persen"> 80.75% </span>
+                                        <span class="number text-dark-lt"> {{ item }} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="d-flex gap-2 flex-column">
+                                <h3 class="persen mb-0"> 80.75% </h3>
+                                <div class="progres text-center d-block"> 516/460/639 </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
                 <tfoot class="tfoot bg-azure-lt sticky-bottom py-2">
                     <tr>
-                        <th>TOTAL</th>
-                        <th class="text-center vote">
-                            <div class="d-flex gap-1 flex-column">
-                                <h4 class="persen mb-0"> 80.75% </h4>
-                                <span class="number"> 0000 </span>
-                            </div>
-                        </th>
-                        <th class="text-center vote bg-success-lt">
-                            <div class="d-flex gap-1 flex-column">
-                                <h4 class="persen mb-0"> 80.75% </h4>
-                                <span class="number"> 0000 </span>
-                            </div>
-                        </th>
-                        <th class="text-center vote">
-                            <div class="d-flex gap-1 flex-column">
-                                <h4 class="persen mb-0"> 80.75% </h4>
-                                <span class="number"> 0000 </span>
+                        <th colspan="4" class="ps-1">
+                            <div class="bg-light-lt ps-2">TOTAL</div>
+                            <div class="d-flex justify-content-around">
+
+                                <div class="text-center vote">
+                                    <div class="d-flex gap-1 flex-column">
+                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <span class="number text-dark-lt"> 0000 </span>
+                                    </div>
+                                </div>
+                                <div class="text-center vote bg-success-lt">
+                                    <div class="d-flex gap-1 flex-column">
+                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <span class="number text-dark-lt"> 0000 </span>
+                                    </div>
+                                </div>
+                                <div class="text-center vote">
+                                    <div class="d-flex gap-1 flex-column">
+                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <span class="number text-dark-lt"> 0000 </span>
+                                    </div>
+                                </div>
                             </div>
                         </th>
                         <th class="text-center">
                             <div class="d-flex gap-1 flex-column">
                                 <span class="persen"> 80.75% </span>
-                                <div class="progress text-center d-block"> 516/460/639 </div>
+                                <div class="progres text-center d-block"> 516/460/639 </div>
                             </div>
                         </th>
                     </tr>
@@ -269,16 +346,17 @@ table .persen {
 table .number {
     font-size: smaller;
     text-wrap: nowrap;
-    color: rgba(240, 248, 255, 0.502);
 }
 
 table .progres {
     font-size: smaller;
 }
+
 .table-votes {
     font-size: 0.7rem;
     font-family: monospace;
 }
+
 .table-votes .lokasi {
     font-family: monospace;
 }

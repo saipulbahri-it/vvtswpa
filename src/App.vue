@@ -28,7 +28,7 @@ if (darkThemeMq.matches) {
 </script>
 
 <template>
-  <HeaderLayout>
+  <HeaderLayout class="d-none d-md-block">
     <template #nabar-menu>
       <NavMenu />
     </template>

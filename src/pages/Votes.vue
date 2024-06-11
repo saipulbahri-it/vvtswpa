@@ -1,9 +1,14 @@
 <template>
     <b-page>
         <template #page-header>
-            <div class="page-header d-print-none align-items-center">
+            <div class="page-header d-print-none align-items-center sticky-top">
                 <div class="container-xl">
                     <div class="row g-2 align-items-center">
+                        <div class="col-auto">
+                            <button class="btn px-2 rounded-4" @click="$router.go(-1)">
+                                <IconArrowLeft size="20" />
+                            </button>
+                        </div>
                         <div class="col">
                             <!-- Page pre-title -->
                             <div class="page-pretitle">Rekap Suara</div>
@@ -107,7 +112,7 @@
             <table class="table table-votes card-table table-vcenter table-sm table-borderless table-striped w-full">
                 <thead class="sticky-top bg-blue-lt">
                     <tr>
-                        <th colspan="4">
+                        <th colspan="4" class="ps-1">
                             <h3 class="mb-0">{{ tLabel }}</h3>
                             <div class="d-flex justify-content-around">
                                 <div class="vertical-align-middle text-center vote">
@@ -138,7 +143,7 @@
                 <tbody>
                     <tr v-for="(item, index) in lokasi" :key="index">
                         <td colspan="4" class="ps-1">
-                            <div class="lokasi fs-4 fw-semibold bg-light-lt ps-2">
+                            <div class="lokasi fs-4 fw-semibold ps-2 bg-bitbucket-lt bg-secondary-lt">
                                 <router-link :to="`/v/${item}`" v-if="item.length <= 6" class="label">
                                     {{ IDToName[item] }}
                                 </router-link>
@@ -147,28 +152,28 @@
                             <div class="d-flex justify-content-around">
                                 <div class="col text-center vote bg-green-lt">
                                     <div class="d-flex flex-column">
-                                        <span class="persen"> 80.75% </span>
                                         <span class="number text-dark-lt"> {{ item }} </span>
+                                        <span class="persen"> {{ Math.round(Math.random() * 100 / 3) }}% </span>
                                     </div>
                                 </div>
                                 <div class="col text-center vote bg-warning-lt">
                                     <div class="d-flex flex-column">
-                                        <span class="persen"> 80.75% </span>
                                         <span class="number text-dark-lt"> {{ item }} </span>
+                                        <span class="persen"> {{ Math.round(Math.random() * 100 / 3) }}% </span>
                                     </div>
                                 </div>
-                                <div class="col text-center vote bg-blue-lt">
+                                <div class="col text-center vote bg-secondary-lt ">
                                     <div class="d-flex flex-column">
-                                        <span class="persen"> 80.75% </span>
                                         <span class="number text-dark-lt"> {{ item }} </span>
+                                        <span class="persen"> {{ Math.round(Math.random() * 100 / 3) }}% </span>
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td class="text-center">
-                            <div class="d-flex gap-2 flex-column">
-                                <h3 class="persen mb-0"> 80.75% </h3>
+                            <div class="d-flex gap-1 flex-column">
                                 <div class="progres text-center d-block"> 516/460/639 </div>
+                                <h3 class="persen mb-0"> {{ Math.round(Math.random() * 100 / 3) }}% </h3>
                             </div>
                         </td>
                     </tr>
@@ -181,19 +186,19 @@
 
                                 <div class="text-center vote">
                                     <div class="d-flex gap-1 flex-column">
-                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <h4 class="persen mb-0"> {{ Math.round(Math.random() * 100 / 3) }}% </h4>
                                         <span class="number text-dark-lt"> 0000 </span>
                                     </div>
                                 </div>
                                 <div class="text-center vote bg-success-lt">
                                     <div class="d-flex gap-1 flex-column">
-                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <h4 class="persen mb-0"> {{ Math.round(Math.random() * 100 / 3) }}% </h4>
                                         <span class="number text-dark-lt"> 0000 </span>
                                     </div>
                                 </div>
                                 <div class="text-center vote">
                                     <div class="d-flex gap-1 flex-column">
-                                        <h4 class="persen mb-0"> 80.75% </h4>
+                                        <h4 class="persen mb-0"> {{ Math.round(Math.random() * 100 / 3) }}% </h4>
                                         <span class="number text-dark-lt"> 0000 </span>
                                     </div>
                                 </div>
@@ -201,7 +206,7 @@
                         </th>
                         <th class="text-center">
                             <div class="d-flex gap-1 flex-column">
-                                <span class="persen"> 80.75% </span>
+                                <span class="persen"> {{ Math.round(Math.random() * 100 / 3) }}% </span>
                                 <div class="progres text-center d-block"> 516/460/639 </div>
                             </div>
                         </th>
@@ -225,6 +230,7 @@ defineProps<{ title?: string | undefined, pretitle?: string | null }>()
 const route = useRoute();
 import { LRUCache } from 'lru-cache'
 import { computed } from '@vue/reactivity';
+import { IconArrowBack, IconArrowBadgeLeft, IconArrowLeft } from '@tabler/icons-vue';
 // Set up LRU cache
 const cache = new LRUCache<string, Hierarchy>({
     max: 100, // Maximum number of items
@@ -253,7 +259,7 @@ watch(() => route.params.kode, (newId) => {
 // };
 
 const fetchData = () => {
-    const url = "https://raw.githubusercontent.com/saipulbahri-it/vvtswpa/main/public/tps.json";
+    const url = "/tps.json";
 
     // Check if the response is in the cache
     const cachedResponse = cache.get(url);

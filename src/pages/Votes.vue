@@ -230,7 +230,7 @@ defineProps<{ title?: string | undefined, pretitle?: string | null }>()
 const route = useRoute();
 import { LRUCache } from 'lru-cache'
 import { computed } from '@vue/reactivity';
-import { IconArrowBack, IconArrowBadgeLeft, IconArrowLeft } from '@tabler/icons-vue';
+import {IconArrowLeft } from '@tabler/icons-vue';
 // Set up LRU cache
 const cache = new LRUCache<string, Hierarchy>({
     max: 100, // Maximum number of items
